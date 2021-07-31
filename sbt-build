@@ -1,0 +1,25 @@
+#!/bin/bash
+# sbt-build.sh
+
+function build () {
+        if [[ ! -e cabal.project ]]; then
+            echo "Could not find 'cabal.project' file in current directory $(pwd)"
+            exit 1
+        fi
+        
+        cabal new-build --enable-tests
+        
+        version=$(sed -n 's/^version:\s\+\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)/\1/p' sharad-backend.cabal)
+        build_dir="dist-newstyle/build/x86_64-linux/ghc-8.6.5/sharad-backend-$version"
+        build_dir_backend_exe="$build_dir/x/sharad-backend/build/sharad-backend"
+        exe_path="$build_dir_backend_exe/sharad-backend"
+        
+        if [[ ! -e $exe_path ]]; then
+                echo "Could not find built executable at path: $exe_path"
+        fi
+        
+        sandbox_dir='dist-newstyle/sandbox'
+        mkdir -p "$sandbox_dir"
+        cp "$exe_path" "$sandbox_dir"
+}
+
