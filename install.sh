@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp ./sbt ./sbt-usage ./sbt-build /usr/local/bin/
+cp ./sbt* /usr/local/bin/
 

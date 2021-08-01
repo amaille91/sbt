@@ -1,7 +1,7 @@
 #!/bin/bash
 # sbt-build.sh
 
-function build () {
+sbt-build () {
         if [[ ! -e cabal.project ]]; then
             echo "Could not find 'cabal.project' file in current directory $(pwd)"
             exit 1

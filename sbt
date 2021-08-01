@@ -3,12 +3,17 @@
 
 . sbt-usage
 . sbt-build
+. sbt-test
 
 case $1 in
 
         build)
                 echo "Building sharad server"
-                build
+                sbt-build
+                ;;
+        test)
+                echo "Running sharad-server's unit tests"
+                sbt-test
                 ;;
 
         publish)
@@ -16,7 +21,7 @@ case $1 in
                 ;;
         *)
                 echo "Unknown command $1" >&2
-                usage
+                sbt-usage
                 exit 1
                 ;;
 esac

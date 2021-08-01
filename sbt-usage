@@ -1,13 +1,14 @@
 #!/bin/bash
 # sbt-usage.sh
 
-function usage {
-    printf '%s' \
-        "USAGE: sbt [COMMAND] [OPTIONS]\n" \
-        "The Sharad Build Tool enables smooth integration of the underlying build tool (i.e cabal in this setting) with the rest of the sharad ecosystem (e.g. 'sharad.sh', the wrapper around the sharad server and 'srt' the Sharad Repository Tool)\n" \
-        "Options:\n"\
-        "  -h    Displays this usage\n"\
-        "Commands:\n"\
-        "  publish    Builds the sharad server then Publishes it into the Sharad Repository\n"
+sbt-usage() {
+    cat <<EOF
+USAGE: sbt [COMMAND] [OPTIONS]
+The Sharad Build Tool enables smooth integration of the underlying build tool (i.e cabal in this setting) with the rest of the sharad ecosystem (e.g. 'sharad.sh', the wrapper around the sharad server and 'srt' the Sharad Repository Tool)
+Options:
+  -h    Displays this usage
+Commands:
+  publish    Builds the sharad server then Publishes it into the Sharad Repository
+EOF
 }
 

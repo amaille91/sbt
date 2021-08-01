@@ -1,0 +1,7 @@
+#!/bin/bash
+# sbt-test.sh
+
+sbt-test() {
+        echo "Running tests with cabal"
+        cabal new-run sharad-backend:sharad-unit-tests --run-tests
+}
