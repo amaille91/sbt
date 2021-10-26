@@ -1,9 +1,12 @@
 #!/bin/bash
 # sbt-build.sh
 
+set -euo pipefail
+shopt -s inherit_errexit
+
 sbt-build () {
         if [[ ! -e cabal.project ]]; then
-            echo "Could not find 'cabal.project' file in current directory $(pwd)"
+            echo "Could not find 'cabal.project' file in current directory $(pwd)" >&2
             exit 1
         fi
         
@@ -15,11 +18,10 @@ sbt-build () {
         exe_path="$build_dir_backend_exe/sharad-backend"
         
         if [[ ! -e $exe_path ]]; then
-                echo "Could not find built executable at path: $exe_path"
+                echo "Could not find built executable at path: $exe_path" >&2
+                exit 1
         fi
         
-        sandbox_dir='dist-newstyle/sandbox'
-        mkdir -p "$sandbox_dir"
-        cp "$exe_path" "$sandbox_dir"
+        echo "$exe_path"
 }
 

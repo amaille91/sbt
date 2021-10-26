@@ -5,7 +5,7 @@
 . sbt-build
 . sbt-test
 
-case $1 in
+case "${1:-help}" in
 
         build)
                 echo "Building sharad server"
@@ -16,8 +16,17 @@ case $1 in
                 sbt-test
                 ;;
 
+        integration-test)
+                echo "Running sharad-server's integration tests"
+                sbt-integration-test
+                ;;
+
         publish)
-                echo "Publishing sharad server"
+                echo "Publishing sharad server -- NOT YET IMPLEMENTED"
+                ;;
+        help)
+                sbt-usage
+                exit 1
                 ;;
         *)
                 echo "Unknown command $1" >&2
