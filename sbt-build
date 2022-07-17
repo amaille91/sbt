@@ -12,8 +12,9 @@ sbt-build () {
         
         cabal new-build --enable-tests
         
+	ghc_version=$(ghc --version | sed -n 's/.*version \([0-9]\+\.[0-9]\+\.[0-9]\+\)/\1/p')
         version=$(sed -n 's/^version:\s\+\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)/\1/p' sharad-backend.cabal)
-        build_dir="dist-newstyle/build/x86_64-linux/ghc-8.6.5/sharad-backend-$version"
+	build_dir="dist-newstyle/build/x86_64-linux/ghc-$ghc_version/sharad-backend-$version"
         build_dir_backend_exe="$build_dir/x/sharad-backend/build/sharad-backend"
         exe_path="$build_dir_backend_exe/sharad-backend"
         
